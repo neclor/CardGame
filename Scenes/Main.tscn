@@ -1,40 +1,61 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctfjk5yae6650"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_vxx86"]
-[ext_resource type="Texture2D" uid="uid://c5kiu27q46bnj" path="res://Assets/Cards/Back7.png" id="2_js6o1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4i83e"]
+properties/0/path = NodePath("MultiplayerSpawner:scenes/0")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("MultiplayerSpawner:scenes/1")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("MultiplayerSpawner:scenes/2")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vxx86")
 
-[node name="MarkerPlayer1" type="Marker2D" parent="."]
-position = Vector2(952, 778)
+[node name="StartButton" type="Button" parent="."]
+offset_left = 588.0
+offset_top = 431.0
+offset_right = 856.0
+offset_bottom = 576.0
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Player.tscn", "res://Scenes/Stack.tscn", "res://Scenes/Card.tscn")
+spawn_path = NodePath("..")
+spawn_limit = 8
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4i83e")
+
+[node name="StackMarker" type="Marker2D" parent="."]
+position = Vector2(473, 367)
+
+[node name="MarkerPlayer0" type="Marker2D" parent="."]
+position = Vector2(807, 757)
 
 [node name="MarkerPlayer2" type="Marker2D" parent="."]
-position = Vector2(545, 786)
+position = Vector2(89, 582)
+
+[node name="MarkerPlayer1" type="Marker2D" parent="."]
+position = Vector2(358, 747)
 
 [node name="MarkerPlayer3" type="Marker2D" parent="."]
-position = Vector2(197, 689)
+position = Vector2(76, 267)
 
 [node name="MarkerPlayer4" type="Marker2D" parent="."]
-position = Vector2(196, 276)
+position = Vector2(358, 117)
 
 [node name="MarkerPlayer5" type="Marker2D" parent="."]
-position = Vector2(535, 134)
+position = Vector2(785, 104)
 
 [node name="MarkerPlayer6" type="Marker2D" parent="."]
-position = Vector2(1010, 145)
+position = Vector2(1187, 247)
 
 [node name="MarkerPlayer7" type="Marker2D" parent="."]
-position = Vector2(1327, 271)
-
-[node name="MarkerPlayer8" type="Marker2D" parent="."]
-position = Vector2(1358, 725)
-
-[node name="TextureButton" type="TextureButton" parent="."]
-texture_filter = 1
-offset_left = 934.0
-offset_top = 369.0
-offset_right = 1069.0
-offset_bottom = 560.0
-texture_normal = ExtResource("2_js6o1")
-stretch_mode = 0
+position = Vector2(1203, 680)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct4wtiljta2wi"
-path="res://.godot/imported/Back2.png-1a3cbdd1c5b0fbae28ab83f03fc0bdab.ctex"
+uid="uid://cc7c1e6c01mh3"
+path="res://.godot/imported/Floppa.png-5c90e951f583c4dd738cc6e3691a9fde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Back2.png"
-dest_files=["res://.godot/imported/Back2.png-1a3cbdd1c5b0fbae28ab83f03fc0bdab.ctex"]
+source_file="res://Assets/Avatars/Floppa.png"
+dest_files=["res://.godot/imported/Floppa.png-5c90e951f583c4dd738cc6e3691a9fde.ctex"]
 
 [params]
 

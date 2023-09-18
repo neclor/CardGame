@@ -1,7 +1,7 @@
 extends Node
 
 const card_suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
-const card_values = ["A", "R", "Q", "J", 10, 9, 8, 7, 6, 5, 4, 3, 2]
+const card_values = ["A", "K", "Q", "J", 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
 func create_deck():
 	var array = []

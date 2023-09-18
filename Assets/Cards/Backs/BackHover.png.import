@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5kiu27q46bnj"
-path="res://.godot/imported/Back7.png-7eb9454dc0fe0ff19880ae4eb21e2eb7.ctex"
+uid="uid://7gwkexmgf1su"
+path="res://.godot/imported/BackHover.png-4f3a59e11f0ae94262bde63187241942.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Back7.png"
-dest_files=["res://.godot/imported/Back7.png-7eb9454dc0fe0ff19880ae4eb21e2eb7.ctex"]
+source_file="res://Assets/Cards/Backs/BackHover.png"
+dest_files=["res://.godot/imported/BackHover.png-4f3a59e11f0ae94262bde63187241942.ctex"]
 
 [params]
 
