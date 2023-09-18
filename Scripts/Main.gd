@@ -40,7 +40,7 @@ func host_game(_name):
 	multiplayer.peer_connected.connect(add_player)
 
 	add_player(multiplayer.get_unique_id(), _name)
-	#$StartButton.visible = true
+	$Button.text = "abc"
 
 func add_player(id, _name):
 	var player = player_scene.instantiate()
@@ -51,7 +51,7 @@ func add_player(id, _name):
 	add_child(player)
 
 	player.init(id, _name)
-	player.position = $MarkerPlayer0.position
+	#player.position = $MarkerPlayer0.position
 
 
 
