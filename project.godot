@@ -16,13 +16,16 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
 
-Main="*res://Scripts/Main.gd"
 DeckFunctions="*res://Scripts/DeckFunctions.gd"
 
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+
+[dotnet]
+
+project/assembly_name="CardGame"
 
 [rendering]
 
