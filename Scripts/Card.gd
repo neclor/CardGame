@@ -8,5 +8,5 @@ func _init(_suit, _value):
 	suit = _suit
 	value = _value
 
-func change_texture(card):
+func change_texture():
 	$Card.texture = load("res://Assets/Cards/{0}/{1}.png".format([suit, value]))

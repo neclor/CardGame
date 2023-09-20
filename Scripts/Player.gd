@@ -26,9 +26,9 @@ var rank
 var card
 var kings
 
-func init(id, _name):
+func init(id,):
 	player_id = id
-	player_name = _name
+	player_name = "dasdasd"#_name
 
 	$Name.text = player_name
 

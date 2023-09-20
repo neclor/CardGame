@@ -3,33 +3,38 @@
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_vxx86"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4i83e"]
-properties/0/path = NodePath("MultiplayerSpawner:scenes/0")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-properties/1/path = NodePath("MultiplayerSpawner:scenes/1")
-properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
-properties/2/path = NodePath("MultiplayerSpawner:scenes/2")
-properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vxx86")
 
-[node name="Button" type="Button" parent="."]
+[node name="join" type="Button" parent="."]
+offset_left = 1636.0
+offset_top = 45.0
+offset_right = 2364.0
+offset_bottom = 220.0
+text = "join
+"
+
+[node name="host" type="Button" parent="."]
+offset_left = 1667.0
+offset_top = 291.0
+offset_right = 2618.0
+offset_bottom = 566.0
+text = "host"
+
+[node name="StartButton" type="Button" parent="."]
 visible = false
 offset_left = 588.0
 offset_top = 431.0
 offset_right = 856.0
 offset_bottom = 576.0
+text = "Start
+"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Player.tscn", "res://Scenes/Stack.tscn", "res://Scenes/Card.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Player.tscn")
 spawn_path = NodePath("..")
-spawn_limit = 8
+spawn_limit = 4
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4i83e")
@@ -60,3 +65,7 @@ position = Vector2(1187, 247)
 
 [node name="MarkerPlayer7" type="Marker2D" parent="."]
 position = Vector2(1203, 680)
+
+[connection signal="pressed" from="join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
