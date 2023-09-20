@@ -90,8 +90,10 @@ public class Player
 
     public readonly List<Card> Kings = new();
 
-    public Card? Apply(Card card)
+    // return returned Cards
+    public List<Card> Apply(Card card)
     {
+        List<Card> returnedCards = new() { card };
         switch (card.Rank)
         {
             case CardRank.Ace:
@@ -102,13 +104,15 @@ public class Player
                 break;
             case CardRank.Jack:
                 Rank = PlayerRank.Beggar;
+                returnedCards.AddRange(Kings);
                 Kings.Clear();
                 break;
             case CardRank.King:
+                returnedCards.Clear();
                 Kings.Add(card);
-                return null;
+                break;              
         }
-        return card;
+        return returnedCards;
     }
 }
 
@@ -139,9 +143,8 @@ public class Game
         {
             var card = PullNextCard();
 
-            var appliedCard = player.Apply(card);
-            if (appliedCard is not null)
-                Trash.Add(appliedCard.Value);
+            foreach (var returnedCard in player.Apply(card))
+                Trash.Add(returnedCard);
         }
     }
 
