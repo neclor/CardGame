@@ -70,21 +70,21 @@ public static class CardExtensions
         };
 }
 
+public enum PlayerRank
+{
+    Dead = 0
+    , Beggar = 10
+    , Poor = 20
+    , Servant = 25
+    , Cictizen = 30
+    , Merchant = 35
+    , Prince = 40
+    , King = 50
+}
+
 public class Player
 {
     public string Name;
-
-    public enum PlayerRank
-    {
-        Dead = 0
-        , Beggar = 10
-        , Poor = 20
-        , Servant = 25
-        , Cictizen = 30
-        , Merchant = 35
-        , Prince = 40
-        , King = 50
-    }
 
     public PlayerRank Rank;
 
@@ -139,12 +139,15 @@ public class Game
 
     public void Round()
     {
-        foreach (var player in Players)
-        {
-            var card = PullNextCard();
+        var pulledCards = Players.ToDictionary(p => p, p => PullNextCard());
 
-            foreach (var returnedCard in player.Apply(card))
+        foreach (var (player, card) in pulledCards)
+        {
+            foreach (var returnedCard in player.Apply(card)) 
                 Trash.Add(returnedCard);
+
+            if (player.Rank is PlayerRank.Dead)
+                Players.Remove(player);
         }
     }
 
@@ -153,6 +156,5 @@ public class Game
         var deck = Card.Deck52.ToArray();
         Random.Shared.Shuffle(deck);
         Deck = deck.ToList();
-
     }
 }
