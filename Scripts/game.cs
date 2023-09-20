@@ -24,34 +24,16 @@ public readonly struct Card
     public CardRank Rank { get; }
     public Suite Suite { get; }
 
-    public static readonly IReadOnlyList<Card> Deck36 = new Card[36] {
-        new(CardRank.Ace, Suite.Hearts)      , new(CardRank.Ace, Suite.Diamonds)    , new(CardRank.Ace, Suite.Clubs)     , new(CardRank.Ace, Suite.Spades)
-        , new(CardRank.Six, Suite.Hearts)    , new(CardRank.Six, Suite.Diamonds)    , new(CardRank.Six, Suite.Clubs)     , new(CardRank.Six, Suite.Spades)
-        , new(CardRank.Seven, Suite.Hearts)  , new(CardRank.Seven, Suite.Diamonds)  , new(CardRank.Seven, Suite.Clubs)   , new(CardRank.Seven, Suite.Spades)
-        , new(CardRank.Eight, Suite.Hearts)  , new(CardRank.Eight, Suite.Diamonds)  , new(CardRank.Eight, Suite.Clubs)   , new(CardRank.Eight, Suite.Spades)
-        , new(CardRank.Nine, Suite.Hearts)   , new(CardRank.Nine, Suite.Diamonds)   , new(CardRank.Nine, Suite.Clubs)    , new(CardRank.Nine, Suite.Spades)
-        , new(CardRank.Ten, Suite.Hearts)    , new(CardRank.Ten, Suite.Diamonds)    , new(CardRank.Ten, Suite.Clubs)     , new(CardRank.Ten, Suite.Spades)
-        , new(CardRank.Jack, Suite.Hearts)   , new(CardRank.Jack, Suite.Diamonds)   , new(CardRank.Jack, Suite.Clubs)    , new(CardRank.Jack, Suite.Spades)
-        , new(CardRank.Queen, Suite.Hearts)  , new(CardRank.Queen, Suite.Diamonds)  , new(CardRank.Queen, Suite.Clubs)   , new(CardRank.Queen, Suite.Spades)
-        , new(CardRank.King, Suite.Hearts)   , new(CardRank.King, Suite.Diamonds)   , new(CardRank.King, Suite.Clubs)    , new(CardRank.King, Suite.Spades)
-    };
+    public static readonly IReadOnlyList<Card> Deck36 = GenerateDeck(new CardRank[]{
+        CardRank.Ace, CardRank.Six, CardRank.Seven, CardRank.Eight, CardRank.Nine, CardRank.Ten, CardRank.Jack, CardRank.Queen, CardRank.King
+    });
 
-    public static readonly IReadOnlyList<Card> Deck52 = new Card[52] {
-        new(CardRank.Ace, Suite.Hearts)      , new(CardRank.Ace, Suite.Diamonds)    , new(CardRank.Ace, Suite.Clubs)     , new(CardRank.Ace, Suite.Spades)
-        , new(CardRank.Two, Suite.Hearts)    , new(CardRank.Two, Suite.Diamonds)    , new(CardRank.Two, Suite.Clubs)     , new(CardRank.Two, Suite.Spades)
-        , new(CardRank.Three, Suite.Hearts)  , new(CardRank.Three, Suite.Diamonds)  , new(CardRank.Three, Suite.Clubs)   , new(CardRank.Three, Suite.Spades)
-        , new(CardRank.Four, Suite.Hearts)   , new(CardRank.Four, Suite.Diamonds)   , new(CardRank.Four, Suite.Clubs)    , new(CardRank.Four, Suite.Spades)
-        , new(CardRank.Five, Suite.Hearts)   , new(CardRank.Five, Suite.Diamonds)   , new(CardRank.Five, Suite.Clubs)    , new(CardRank.Five, Suite.Spades)
-        , new(CardRank.Six, Suite.Hearts)    , new(CardRank.Six, Suite.Diamonds)    , new(CardRank.Six, Suite.Clubs)     , new(CardRank.Six, Suite.Spades)
-        , new(CardRank.Seven, Suite.Hearts)  , new(CardRank.Seven, Suite.Diamonds)  , new(CardRank.Seven, Suite.Clubs)   , new(CardRank.Seven, Suite.Spades)
-        , new(CardRank.Eight, Suite.Hearts)  , new(CardRank.Eight, Suite.Diamonds)  , new(CardRank.Eight, Suite.Clubs)   , new(CardRank.Eight, Suite.Spades)
-        , new(CardRank.Nine, Suite.Hearts)   , new(CardRank.Nine, Suite.Diamonds)   , new(CardRank.Nine, Suite.Clubs)    , new(CardRank.Nine, Suite.Spades)
-        , new(CardRank.Ten, Suite.Hearts)    , new(CardRank.Ten, Suite.Diamonds)    , new(CardRank.Ten, Suite.Clubs)     , new(CardRank.Ten, Suite.Spades)
-        , new(CardRank.Jack, Suite.Hearts)   , new(CardRank.Jack, Suite.Diamonds)   , new(CardRank.Jack, Suite.Clubs)    , new(CardRank.Jack, Suite.Spades)
-        , new(CardRank.Queen, Suite.Hearts)  , new(CardRank.Queen, Suite.Diamonds)  , new(CardRank.Queen, Suite.Clubs)   , new(CardRank.Queen, Suite.Spades)
-        , new(CardRank.King, Suite.Hearts)   , new(CardRank.King, Suite.Diamonds)   , new(CardRank.King, Suite.Clubs)    , new(CardRank.King, Suite.Spades)
-    };
+    public static readonly IReadOnlyList<Card> Deck52 = GenerateDeck(Enum.GetValues(typeof(CardRank)).Cast<CardRank>().ToArray());
 
+    static IReadOnlyList<Card> GenerateDeck(IReadOnlyList<CardRank> ranks) =>
+        Enum.GetValues(typeof(Suite)).Cast<Suite>()
+            .SelectMany(suite => ranks.Select(rank => new Card(rank, suite)))
+            .ToArray();
 
     public Card(CardRank rank, Suite suite) =>
         (Rank, Suite) = (rank, suite);
