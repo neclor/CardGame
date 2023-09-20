@@ -55,7 +55,7 @@ public readonly struct Card
 }
 
 public static class CardExtensions {
-    public static string ToString(this Card.Suite suite) =>
+    public static string ToSymbol(this Card.Suite suite) =>
         suite switch {
             Card.Suite.Hearts => "♥",
             Card.Suite.Diamonds => "♦",
