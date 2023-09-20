@@ -3,16 +3,16 @@ extends Node
 const card_suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 const card_values = ["A", "K", "Q", "J", 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
-func create_deck():
-	var array = []
+func create():
+	var deck = []
 
 	for card_suit in card_suits:
 		for card_value in card_values:
-			array.append([card_suit, card_value])
+			deck.append(Card.new(card_suit, card_value))
 
-	return array
+	return deck
 
-func shuffle_deck(deck):
+func shuffle(deck):
 	var deck_size = deck.size()
 	var card
 
@@ -24,6 +24,14 @@ func shuffle_deck(deck):
 		deck[e] = card
 
 	return deck
+
+
+
+
+
+
+
+
 
 func divide_deck(deck, number_stacks):
 	var stacks = []

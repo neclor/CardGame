@@ -1,15 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw4obkeph3ukn"]
+[gd_scene load_steps=2 format=3 uid="uid://bw4obkeph3ukn"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_cme14"]
-[ext_resource type="Texture2D" uid="uid://247qq86q7sh1" path="res://Assets/Cards/Spades/J.png" id="1_ul1xv"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_cme14")
-
-[node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(321, 98)
-scale = Vector2(7.07353, 1)
-texture = ExtResource("1_ul1xv")
 
 [node name="Name" type="LineEdit" parent="."]
 offset_left = 75.0

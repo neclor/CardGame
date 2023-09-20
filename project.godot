@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
 
-DeckFunctions="*res://Scripts/DeckFunctions.gd"
+Deck="*res://Scripts/Deck.gd"
 
 [display]
 

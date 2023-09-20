@@ -2,9 +2,6 @@ extends Node2D
 
 var main_scene = preload("res://Scenes/Main.tscn").instantiate()
 
-func _ready():
-	pass
-
 func _on_join_button_pressed():
 	get_tree().root.add_child(main_scene)
 	get_tree().root.remove_child(self)
