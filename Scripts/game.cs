@@ -5,13 +5,15 @@ namespace Neclor.CardGame;
 
 public readonly struct Card
 {
-    public enum Rank {
+    public enum Rank
+    {
         Ace = 1
         , Two, Three, Four, Five, Six, Seven, Eight. Nine, Ten
         , Jack = 11, Queen = 12, King = 13
     }
 
-    public enum Suite {
+    public enum Suite
+    {
         Hearts              // ♥
         , Diamonds          // ♦
         , Clubs             // ♣
@@ -54,7 +56,8 @@ public readonly struct Card
         (Rank, Suite) = (rank suite);
 }
 
-public static class CardExtensions {
+public static class CardExtensions
+{
     public static string ToSymbol(this Card.Suite suite) =>
         suite switch {
             Card.Suite.Hearts => "♥",
