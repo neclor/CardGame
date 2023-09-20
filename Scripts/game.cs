@@ -86,7 +86,7 @@ public class Player
 {
     public string Name;
 
-    public PlayerRank Rank;
+    public PlayerRank Rank = PlayerRank.Prince;
 
     public readonly List<Card> Kings = new();
 
@@ -110,7 +110,7 @@ public class Player
             case CardRank.King:
                 returnedCards.Clear();
                 Kings.Add(card);
-                break;              
+                break;
         }
         return returnedCards;
     }
@@ -143,7 +143,7 @@ public class Game
 
         foreach (var (player, card) in pulledCards)
         {
-            foreach (var returnedCard in player.Apply(card)) 
+            foreach (var returnedCard in player.Apply(card))
                 Trash.Add(returnedCard);
 
             if (player.Rank is PlayerRank.Dead)
