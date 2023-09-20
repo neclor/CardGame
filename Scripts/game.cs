@@ -6,17 +6,17 @@ namespace Neclor.CardGame;
 
 public enum CardRank
 {
-	Ace = 1
-	, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
-	, Jack = 11, Queen = 12, King = 13
+    Ace = 1
+    , Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+    , Jack = 11, Queen = 12, King = 13
 }
 
 public enum Suite
 {
-	Hearts              // ♥
-	, Diamonds          // ♦
-	, Clubs             // ♣
-	, Spades            // ♠
+    Hearts              // ♥
+    , Diamonds          // ♦
+    , Clubs             // ♣
+    , Spades            // ♠
 }
 
 public readonly struct Card
@@ -60,7 +60,8 @@ public readonly struct Card
 public static class CardExtensions
 {
     public static string ToSymbol(this Suite suite) =>
-        suite switch {
+        suite switch
+        {
             Suite.Hearts => "♥",
             Suite.Diamonds => "♦",
             Suite.Clubs => "♣",
@@ -74,7 +75,7 @@ public class Player
     public string Name;
 
     public enum PlayerRank
-	{
+    {
         Dead = 0
         , Beggar = 10
         , Poor = 20
@@ -83,23 +84,23 @@ public class Player
         , Merchant = 35
         , Prince = 40
         , King = 50
-	}
+    }
 
-	public PlayerRank Rank;
+    public PlayerRank Rank;
 
-	public readonly List<Card> Kings = new();
+    public readonly List<Card> Kings = new();
 
     public Card? Apply(Card card)
     {
         switch (card.Rank)
         {
-			case CardRank.Ace:
-				Rank = (PlayerRank)(Math.Min(((int)Rank / 10 + 1) * 10, (int)PlayerRank.King));
-				break;
-			case CardRank.Six:
-				Rank = PlayerRank.Merchant;
-				break;
-			case CardRank.Jack:
+            case CardRank.Ace:
+                Rank = (PlayerRank)(Math.Min(((int)Rank / 10 + 1) * 10, (int)PlayerRank.King));
+                break;
+            case CardRank.Six:
+                Rank = PlayerRank.Merchant;
+                break;
+            case CardRank.Jack:
                 Rank = PlayerRank.Beggar;
                 Kings.Clear();
                 break;
@@ -115,24 +116,24 @@ public class Player
 public class Game
 {
     public List<Card> Deck;
-	public List<Card> Trash = new();
-	public readonly List<Player> Players = new();
+    public List<Card> Trash = new();
+    public readonly List<Player> Players = new();
 
     Card PullNextCard()
     {
-		if (Deck.Count == 0)
-		{
-			Deck = Trash;
-			Trash = new();
-		}
-		var card = Deck.First();
+        if (Deck.Count == 0)
+        {
+            Deck = Trash;
+            Trash = new();
+        }
+        var card = Deck.First();
         Deck.RemoveAt(0);
         return card;
-	}
+    }
 
     public Player Winner => Players.Count == 1 ? Players[0] : null;
 
-	public void Round()
+    public void Round()
     {
         foreach (var player in Players)
         {
@@ -141,13 +142,14 @@ public class Game
             var appliedCard = player.Apply(card);
             if (appliedCard is not null)
                 Trash.Add(appliedCard.Value);
-        }       
-	}
+        }
+    }
 
-    public Game() {
+    public Game()
+    {
         var deck = Card.Deck52.ToArray();
-		Random.Shared.Shuffle(deck);
+        Random.Shared.Shuffle(deck);
         Deck = deck.ToList();
 
-	}
+    }
 }
