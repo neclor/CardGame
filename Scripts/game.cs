@@ -22,7 +22,7 @@ public readonly struct Card
     public Suite Suite { get; }
 
     public static readonly IReadOnlyList<Card> Deck36 = new Card[36] {
-        new(Rank.Ace, Suite.Hearts)      , new(Rank.Two, Suite.Diamonds)    , new(Rank.Two, Suite.Clubs)     , new(Rank.Two, Suite.Spades)
+        new(Rank.Ace, Suite.Hearts)      , new(Rank.Ace, Suite.Diamonds)    , new(Rank.Ace, Suite.Clubs)     , new(Rank.Ace, Suite.Spades)
         , new(Rank.Six, Suite.Hearts)    , new(Rank.Six, Suite.Diamonds)    , new(Rank.Six, Suite.Clubs)     , new(Rank.Six, Suite.Spades)
         , new(Rank.Seven, Suite.Hearts)  , new(Rank.Seven, Suite.Diamonds)  , new(Rank.Seven, Suite.Clubs)   , new(Rank.Seven, Suite.Spades)
         , new(Rank.Eight, Suite.Hearts)  , new(Rank.Eight, Suite.Diamonds)  , new(Rank.Eight, Suite.Clubs)   , new(Rank.Eight, Suite.Spades)
@@ -34,7 +34,7 @@ public readonly struct Card
     };
 
     public static readonly IReadOnlyList<Card> Deck52 = new Card[52] {
-        new(Rank.Ace, Suite.Hearts)      , new(Rank.Two, Suite.Diamonds)    , new(Rank.Two, Suite.Clubs)     , new(Rank.Two, Suite.Spades)
+        new(Rank.Ace, Suite.Hearts)      , new(Rank.Ace, Suite.Diamonds)    , new(Rank.Ace, Suite.Clubs)     , new(Rank.Ace, Suite.Spades)
         , new(Rank.Two, Suite.Hearts)    , new(Rank.Two, Suite.Diamonds)    , new(Rank.Two, Suite.Clubs)     , new(Rank.Two, Suite.Spades)
         , new(Rank.Three, Suite.Hearts)  , new(Rank.Three, Suite.Diamonds)  , new(Rank.Three, Suite.Clubs)   , new(Rank.Three, Suite.Spades)
         , new(Rank.Four, Suite.Hearts)   , new(Rank.Four, Suite.Diamonds)   , new(Rank.Four, Suite.Clubs)    , new(Rank.Four, Suite.Spades)
