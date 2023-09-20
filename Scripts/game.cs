@@ -28,10 +28,10 @@ public readonly struct Card
         CardRank.Ace, CardRank.Six, CardRank.Seven, CardRank.Eight, CardRank.Nine, CardRank.Ten, CardRank.Jack, CardRank.Queen, CardRank.King
     });
 
-    public static readonly IReadOnlyList<Card> Deck52 = GenerateDeck(Enum.GetValues(typeof(CardRank)).Cast<CardRank>().ToArray());
+    public static readonly IReadOnlyList<Card> Deck52 = GenerateDeck(Enum.GetValues<CardRank>());
 
     static IReadOnlyList<Card> GenerateDeck(IReadOnlyList<CardRank> ranks) =>
-        Enum.GetValues(typeof(Suite)).Cast<Suite>()
+        Enum.GetValues<Suite>()
             .SelectMany(suite => ranks.Select(rank => new Card(rank, suite)))
             .ToArray();
 
