@@ -1,7 +1,11 @@
 extends Node2D
 
+
+
+
 const player_scene = preload("res://Scenes/Player.tscn")
 const card_scene = preload("res://Scenes/Card.tscn")
+const stack_scene = preload("res://Scenes/Stack.tscn")
 
 const PORT = 6789
 var enet_peer = ENetMultiplayerPeer.new()
@@ -21,9 +25,21 @@ func _ready():
 	print()
 
 
-
+@rpc("any_peer")
 func start():
-	print(players)
+	$StartButton.visible = false
+	card_deck = Deck.create()
+	for i in 4:
+		var stack = stack_scene.instantiate()
+		stack.disable_stack()
+
+		#var stack = Stack.new(13)
+		stacks.append(stack)
+		add_child(stack)
+
+		stack.position = Vector2((stacks.size() - 1) * 200, 400)
+
+		
 	pass
 
 
@@ -47,7 +63,7 @@ func test():
 
 
 func _on_start_button_pressed():
-	start()
+	start.rpc()
 	pass # Replace with function body.
 
 
@@ -88,8 +104,22 @@ func _on_join_pressed():
 
 
 func add_player(peer_id):
-	print("asdsad")
 	var player = player_scene.instantiate()
+	player.init(peer_id, "_name")
+
 	player.name = str(peer_id)
+
 	players.append(player)
 	add_child(player)
+	
+	player.position = Vector2((players.size() - 1) * 200, 0)
+
+	
+
+
+
+
+	print("asdsad")
+
+	
+	
