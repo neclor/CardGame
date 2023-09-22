@@ -29,6 +29,8 @@ func _ready():
 func start():
 	$StartButton.visible = false
 	card_deck = Deck.create()
+	card_deck = Deck.shuffle(card_deck)
+	print(card_deck)
 	for i in 4:
 		var stack = stack_scene.instantiate()
 		stack.disable_stack()
@@ -63,6 +65,7 @@ func test():
 
 
 func _on_start_button_pressed():
+	test.rpc()
 	start.rpc()
 	pass # Replace with function body.
 
