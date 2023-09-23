@@ -1,8 +1,5 @@
 extends Node2D
 
-
-
-
 const player_scene = preload("res://Scenes/Player.tscn")
 const card_scene = preload("res://Scenes/Card.tscn")
 const stack_scene = preload("res://Scenes/Stack.tscn")
@@ -12,28 +9,21 @@ var enet_peer = ENetMultiplayerPeer.new()
 var players = []
 
 var card_deck = []
+var trash = []
 var stacks = []
 
 func init():
-	#card_deck = Deck.shuffle_deck(Deck.create_deck())
-	#card_deck = Deck.divide_deck(card_deck, 4)
-	pass
-
-func _ready():
-	init()
-	#$StartButton.visible = true
-	print()
-
+	card_deck = Deck.shuffle(Deck.create())
+	trash = []
+	stacks = []
 
 @rpc("any_peer")
 func start():
+	init()
 	$StartButton.visible = false
-	card_deck = Deck.create()
-	card_deck = Deck.shuffle(card_deck)
-	print(card_deck)
 	for i in 4:
 		var stack = stack_scene.instantiate()
-		stack.disable_stack()
+		#stack.disable_stack()
 
 		#var stack = Stack.new(13)
 		stacks.append(stack)
@@ -41,33 +31,7 @@ func start():
 
 		stack.position = Vector2((stacks.size() - 1) * 200, 400)
 
-		
-	pass
-
-
-
-
-
-
-
-
-
-
-
-
-func _on_test_pressed():
-	test.rpc()
 	
-	
-@rpc("any_peer")
-func test():
-	add_child(card_scene.instantiate())
-
-
-func _on_start_button_pressed():
-	test.rpc()
-	start.rpc()
-	pass # Replace with function body.
 
 
 
@@ -77,34 +41,18 @@ func _on_start_button_pressed():
 
 
 
+func join_game(peer_id):
+	enet_peer.create_client(peer_id, PORT) #$Menu/ip.text
+	multiplayer.multiplayer_peer = enet_peer
 
-
-
-
-
-
-
-
-
-
-func _on_host_pressed():
+func host_game():
 	$StartButton.visible = true
 
-	
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	
 	add_player(multiplayer.get_unique_id())
-
-
-func _on_join_pressed():
-
-
-	enet_peer.create_client("localhost", PORT) #$Menu/ip.text
-	multiplayer.multiplayer_peer = enet_peer
-
-
 
 func add_player(peer_id):
 	var player = player_scene.instantiate()
@@ -117,12 +65,24 @@ func add_player(peer_id):
 	
 	player.position = Vector2((players.size() - 1) * 200, 0)
 
-	
+	print("player created")
+
+
+func _on_start_button_pressed():
+	start() #start.rpc()
+
+func _on_host_pressed():
+	host_game()
+
+
+func _on_join_pressed():
+	join_game("localhost")
 
 
 
 
-	print("asdsad")
 
-	
-	
+
+
+
+

@@ -1,9 +1,8 @@
 extends Node2D
-#class_name Stack
-
-var number_cards
 
 var stack_scene = preload("res://Scenes/Stack.tscn")
+
+var number_cards = 13
 
 func _ready():
 	pass
@@ -16,11 +15,16 @@ func _ready():
 
 
 func _on_stack_button_pressed():
-	pass # Replace with function body.
+	number_cards -= 1
+	if number_cards > 0:
+		update_number_cards()
+	else:
+		queue_free()
+
 
 
 func update_number_cards():
-	$NumberCards.text = number_cards
+	$NumberCards.text = str(number_cards)
 
 func able_stack():
 	$Stack.modulate = Color(1, 1, 1, 1.0)
