@@ -43,8 +43,8 @@ func start():
 
 
 
-func join_game(peer_id):
-	enet_peer.create_client(peer_id, PORT) #$Menu/ip.text
+func join_game(ip_addr):
+	enet_peer.create_client(ip_addr, PORT) #$Menu/ip.text
 	multiplayer.multiplayer_peer = enet_peer
 
 func host_game():
