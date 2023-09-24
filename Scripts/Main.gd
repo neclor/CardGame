@@ -56,11 +56,11 @@ func host_game():
 	
 	add_player(multiplayer.get_unique_id())
 
-func add_player(peer_id):
+func add_player(ip_addr):
 	var player = player_scene.instantiate()
-	player.init(peer_id, "_name")
+	player.init(ip_addr, "_name")
 
-	player.name = str(peer_id)
+	player.name = str(ip_addr)
 
 	players.append(player)
 	add_child(player)
