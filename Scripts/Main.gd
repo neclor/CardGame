@@ -17,8 +17,10 @@ func init():
 	trash = []
 	stacks = []
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func start():
+	var peer_id = multiplayer.get_unique_id()
+	var sender_id = multiplayer.get_remote_sender_id()
 	init()
 	$StartButton.visible = false
 	for i in 4:
@@ -41,8 +43,8 @@ func start():
 
 
 
-func join_game(peer_id):
-	enet_peer.create_client(peer_id, PORT) #$Menu/ip.text
+func join_game(ip_addr):
+	enet_peer.create_client(ip_addr, PORT) #$Menu/ip.text
 	multiplayer.multiplayer_peer = enet_peer
 
 func host_game():
@@ -69,7 +71,7 @@ func add_player(peer_id):
 
 
 func _on_start_button_pressed():
-	start() #start.rpc()
+	start.rpc()
 
 func _on_host_pressed():
 	host_game()
