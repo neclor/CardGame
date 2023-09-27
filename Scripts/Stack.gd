@@ -13,16 +13,16 @@ func _ready():
 	#number_cards = number
 	
 
-
+@rpc("any_peer", "call_local")
 func _on_stack_button_pressed():
 	number_cards -= 1
 	if number_cards > 0:
-		update_number_cards()
+		update_number_cards.rpc()
 	else:
 		queue_free()
 
 
-
+@rpc("any_peer", "call_local")
 func update_number_cards():
 	$NumberCards.text = str(number_cards)
 

@@ -24,4 +24,6 @@ offset_bottom = 100.0
 texture_hover = ExtResource("3_f474r")
 stretch_mode = 0
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
 [connection signal="pressed" from="StackButton" to="." method="_on_stack_button_pressed"]
